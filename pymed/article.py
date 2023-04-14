@@ -26,6 +26,7 @@ class PubMedArticle(object):
         "copyrights",
         "doi",
         "xml",
+        "volume"
     )
 
     def __init__(
@@ -52,6 +53,10 @@ class PubMedArticle(object):
 
     def _extractTitle(self: object, xml_element: TypeVar("Element")) -> str:
         path = ".//ArticleTitle"
+        return getContent(element=xml_element, path=path)
+    
+    def _extractVolume(self: object, xml_element: TypeVar("Element")) -> str:
+        path = ".//Journal/JournalIssue/Volume"
         return getContent(element=xml_element, path=path)
 
     def _extractKeywords(self: object, xml_element: TypeVar("Element")) -> str:
@@ -139,6 +144,7 @@ class PubMedArticle(object):
         self.doi = self._extractDoi(xml_element)
         self.publication_date = self._extractPublicationDate(xml_element)
         self.authors = self._extractAuthors(xml_element)
+        self.volume = self._extractVolume(xml_element)
         self.xml = xml_element
 
     def toDict(self: object) -> dict:
