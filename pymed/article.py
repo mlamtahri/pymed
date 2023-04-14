@@ -115,6 +115,7 @@ class PubMedArticle(object):
             {
                 "lastname": getContent(author, ".//LastName", None),
                 "firstname": getContent(author, ".//ForeName", None),
+                "authoridentifier": getContent(author, ".//AuthorIdentifier", None),
                 "initials": getContent(author, ".//Initials", None),
                 "affiliation": getContent(author, ".//AffiliationInfo/Affiliation", None),
             }
